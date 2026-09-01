@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Yosefha Br Sebayang | Portfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="logo">YS</div>
+  <div class="nav-links">
+    <a href="#about">About</a><a href="#experience">Experience</a>
+    <a href="#projects">Projects</a><a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <button id="themeBtn" class="theme-btn">☀️</button>
+    <a href="#contact" class="connect-btn">Let's Connect</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-banner"></div>
+  <div class="hero-content">
+    <div class="profile-wrapper">
+      <img src="Yosefha_Br_Sebayang_PasPhoto.png" class="profile-photo" alt="Yosefha Br Sebayang">
+    </div>
+    <p class="open-text">OPEN TO OPPORTUNITIES</p>
+    <h1>Yosefha Br Sebayang</h1>
+    <h2>Oceanography Graduate <span>|</span> Business Development <span>|</span> Geohydromatics</h2>
+    <p class="hero-description">
+      Oceanography graduate with a technical background in ocean modelling,
+      geospatial analysis, stakeholder engagement, proposal development,
+      and project coordination. Passionate about developing data-driven
+      solutions and building impactful partnerships in marine and geoscience industries.
+    </p>
+    <div class="hero-buttons">
+      <a href="#projects" class="primary-btn">📁 View Projects</a>
+      <a href="#contact" class="secondary-btn">✉ Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="section-title"><span>01</span><h2>ABOUT ME</h2></div>
+  <div class="about-card">
+    <div class="about-icon">🎓</div>
+    <div class="about-info">
+      <h3>EDUCATION</h3>
+      <p>Bachelor of Oceanography (B.Sc.)</p>
+      <p>Institut Teknologi Bandung</p>
+      <p>2022 – 2026</p>
+    </div>
+    <img src="Education_Picture.png" class="about-photo" alt="Yosefha Br Sebayang Education">
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="section" id="experience">
+  <div class="section-title"><span>02</span><h2>EXPERIENCE</h2></div>
+
+  <div class="experience-filters">
+    <button class="experience-filter active" data-filter="all">All</button>
+    <button class="experience-filter" data-filter="academic">Academic & Teaching</button>
+    <button class="experience-filter" data-filter="organization">Leadership & Organization</button>
+  </div>
+
+  <div class="experience-grid">
+
+    <!-- ACADEMIC 1 -->
+    <div class="experience-card" data-category="academic">
+      <div class="experience-icon">🎓</div>
+      <div class="experience-content">
+        <span class="experience-category">Academic & Teaching</span>
+        <h3>Teaching Assistant</h3>
+        <p>Academic and teaching experience at Institut Teknologi Bandung.</p>
+        <div class="experience-tags"><span>Teaching</span><span>Academic</span></div>
+        <button class="experience-link" onclick="openExperience('academic1')">View Experience →</button>
+      </div>
+    </div>
+
+    <!-- ACADEMIC 2 -->
+    <div class="experience-card" data-category="academic">
+      <div class="experience-icon">📚</div>
+      <div class="experience-content">
+        <span class="experience-category">Academic & Teaching</span>
+        <h3>Academic Experience</h3>
+        <p>Additional academic, laboratory, or mentoring experience.</p>
+        <div class="experience-tags"><span>Academic</span><span>Mentoring</span></div>
+        <button class="experience-link" onclick="openExperience('academic2')">View Experience →</button>
+      </div>
+    </div>
+
+    <!-- ORGANIZATION 1 -->
+    <div class="experience-card" data-category="organization">
+      <div class="experience-icon">🌊</div>
+      <div class="experience-content">
+        <span class="experience-category">Leadership & Organization</span>
+        <h3>Head of Sponsorship</h3>
+        <p>Leadership and sponsorship experience in student organization activities.</p>
+        <div class="experience-tags"><span>Leadership</span><span>Sponsorship</span></div>
+        <button class="experience-link" onclick="openExperience('organization1')">View Experience →</button>
+      </div>
+    </div>
+
+    <!-- ORGANIZATION 2 -->
+    <div class="experience-card" data-category="organization">
+      <div class="experience-icon">🤝</div>
+      <div class="experience-content">
+        <span class="experience-category">Leadership & Organization</span>
+        <h3>Project & Community Activities</h3>
+        <p>Project coordination and community-based organizational activities.</p>
+        <div class="experience-tags"><span>Coordination</span><span>Community</span></div>
+        <button class="experience-link" onclick="openExperience('organization2')">View Experience →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EXPERIENCE DETAIL MODAL -->
+<div class="experience-modal" id="experienceModal">
+  <div class="experience-modal-box">
+    <button class="close-experience" onclick="closeExperience()">×</button>
+
+    <div class="experience-header">
+      <span id="experienceCategory">ACADEMIC & TEACHING</span>
+      <h2 id="experienceTitle">Experience Title</h2>
+      <p id="experienceIntro">Short description of the experience.</p>
+    </div>
+
+    <div class="experience-detail">
+
+      <div class="experience-row">
+        <div class="experience-image"><img id="expImg1" src="experience-image.jpg" alt="Experience"></div>
+        <div class="experience-text">
+          <span>01</span><h3>Role & Overview</h3>
+          <p id="expDesc1">Describe your role, position, and background.</p>
+        </div>
+      </div>
+
+      <div class="experience-row reverse">
+        <div class="experience-image"><img id="expImg2" src="experience-image.jpg" alt="Experience"></div>
+        <div class="experience-text">
+          <span>02</span><h3>Responsibilities</h3>
+          <p id="expDesc2">Describe your main responsibilities and activities.</p>
+        </div>
+      </div>
+
+      <div class="experience-row">
+        <div class="experience-image"><img id="expImg3" src="experience-image.jpg" alt="Experience"></div>
+        <div class="experience-text">
+          <span>03</span><h3>Skills & Contribution</h3>
+          <p id="expDesc3">Describe skills developed and your contribution.</p>
+        </div>
+      </div>
+
+      <div class="experience-row reverse">
+        <div class="experience-image"><img id="expImg4" src="experience-image.jpg" alt="Experience"></div>
+        <div class="experience-text">
+          <span>04</span><h3>Outcome</h3>
+          <p id="expDesc4">Describe the outcome, achievement, or impact.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<section class="section" id="projects">
+  <div class="section-title"><span>03</span><h2>PROJECTS</h2></div>
+
+  <div class="project-filters">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="metocean">Metocean</button>
+    <button class="filter-btn" data-filter="hydrodynamic">Hydrodynamic</button>
+  </div>
+
+  <div class="project-grid">
+
+    <div class="project-card" data-category="metocean">
+      <img src="project-image.jpg" class="project-image" alt="Metocean Project">
+      <div class="project-content">
+        <span class="project-category">Metocean</span>
+        <h3>Metocean Project</h3>
+        <p>Short description of the project, methodology, and contribution.</p>
+        <div class="project-tags"><span>SWAN</span><span>Python</span></div>
+        <button class="project-link" onclick="openProject('project1')">View Project →</button>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="hydrodynamic">
+      <img src="project-image.jpg" class="project-image" alt="Hydrodynamic Project">
+      <div class="project-content">
+        <span class="project-category">Hydrodynamic</span>
+        <h3>Hydrodynamic Project</h3>
+        <p>Short description of the project, methodology, and contribution.</p>
+        <div class="project-tags"><span>ADCIRC</span><span>QGIS</span></div>
+        <button class="project-link" onclick="openProject('project2')">View Project →</button>
+      </div>
+    </div>
+
+    <div class="project-card" data-category="metocean">
+      <img src="project-image.jpg" class="project-image" alt="Metocean Project">
+      <div class="project-content">
+        <span class="project-category">Metocean</span>
+        <h3>Wave Modelling Project</h3>
+        <p>Short description of the project, methodology, and contribution.</p>
+        <div class="project-tags"><span>Wave</span><span>GIS</span></div>
+        <button class="project-link" onclick="openProject('project3')">View Project →</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROJECT DETAIL MODAL -->
+<div class="project-modal" id="projectModal">
+  <div class="modal-box">
+    <button class="close-modal" onclick="closeProject()">×</button>
+
+    <div class="modal-header">
+      <span id="detailCategory">METOCEAN</span>
+      <h2 id="detailTitle">Project Title</h2>
+      <p id="detailIntro">Short project introduction.</p>
+    </div>
+
+    <div class="detail-content">
+
+      <div class="detail-row">
+        <div class="detail-image"><img id="img1" src="project-image.jpg" alt="Project"></div>
+        <div class="detail-text">
+          <span>01</span><h3>Project Overview</h3>
+          <p id="desc1">Explain the background, objectives, and scope.</p>
+        </div>
+      </div>
+
+      <div class="detail-row reverse">
+        <div class="detail-image"><img id="img2" src="project-image.jpg" alt="Project"></div>
+        <div class="detail-text">
+          <span>02</span><h3>Methodology</h3>
+          <p id="desc2">Explain the methodology, modelling process, or workflow.</p>
+        </div>
+      </div>
+
+      <div class="detail-row">
+        <div class="detail-image"><img id="img3" src="project-image.jpg" alt="Project"></div>
+        <div class="detail-text">
+          <span>03</span><h3>My Contribution</h3>
+          <p id="desc3">Explain your role, technical contribution, and responsibilities.</p>
+        </div>
+      </div>
+
+      <div class="detail-row reverse">
+        <div class="detail-image"><img id="img4" src="project-image.jpg" alt="Project"></div>
+        <div class="detail-text">
+          <span>04</span><h3>Result & Outcome</h3>
+          <p id="desc4">Explain the results, findings, outputs, or final products.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- SKILLS -->
+<section class="section" id="skills">
+  <div class="section-title"><span>04</span><h2>SKILLS</h2></div>
+  <div class="skills">
+    <span>Ocean Modelling</span><span>SWAN</span><span>ADCIRC</span>
+    <span>GIS</span><span>QGIS</span><span>Python</span><span>MATLAB</span>
+    <span>Geospatial Analysis</span><span>Project Coordination</span><span>Business Development</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="section-title"><span>05</span><h2>LET'S CONNECT</h2></div>
+  <div class="simple-card">
+    <p>I am open to opportunities in oceanography, marine industries,
+      geohydromatics, business development, and related fields.</p>
+  </div>
+</section>
+
+<footer><p>© 2026 Yosefha Br Sebayang</p></footer>
+
+<script>
+const btn=document.getElementById("themeBtn");
+if(localStorage.getItem("theme")==="dark"){document.body.classList.add("dark");btn.textContent="🌙"}
+btn.addEventListener("click",()=>{
+  document.body.classList.toggle("dark");
+  const dark=document.body.classList.contains("dark");
+  btn.textContent=dark?"🌙":"☀️";
+  localStorage.setItem("theme",dark?"dark":"light");
+});
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const f=btn.dataset.filter;
+    document.querySelectorAll(".project-card").forEach(p=>{
+      p.classList.toggle("hidden",f!="all"&&p.dataset.category!=f);
+    });
+  });
+});
+
+document.querySelectorAll(".experience-filter").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll(".experience-filter").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    const f=btn.dataset.filter;
+    document.querySelectorAll(".experience-card").forEach(e=>{
+      e.classList.toggle("hidden",f!="all"&&e.dataset.category!=f);
+    });
+  });
+});
+
+const expData={
+  academic1:{
+    category:"ACADEMIC & TEACHING",title:"Teaching Assistant",
+    intro:"Academic and teaching experience at Institut Teknologi Bandung.",
+    imgs:["experience-image.jpg","experience-image.jpg","experience-image.jpg","experience-image.jpg"]
+  },
+  academic2:{
+    category:"ACADEMIC & TEACHING",title:"Academic Experience",
+    intro:"Additional academic and mentoring experience.",
+    imgs:["experience-image.jpg","experience-image.jpg","experience-image.jpg","experience-image.jpg"]
+  },
+  organization1:{
+    category:"LEADERSHIP & ORGANIZATION",title:"Head of Sponsorship",
+    intro:"Leadership and sponsorship experience in student activities.",
+    imgs:["experience-image.jpg","experience-image.jpg","experience-image.jpg","experience-image.jpg"]
+  },
+  organization2:{
+    category:"LEADERSHIP & ORGANIZATION",title:"Project & Community Activities",
+    intro:"Project coordination and community-based activities.",
+    imgs:["experience-image.jpg","experience-image.jpg","experience-image.jpg","experience-image.jpg"]
+  }
+};
+
+function openExperience(id){
+  const d=expData[id];
+  document.getElementById("experienceCategory").textContent=d.category;
+  document.getElementById("experienceTitle").textContent=d.title;
+  document.getElementById("experienceIntro").textContent=d.intro;
+  d.imgs.forEach((img,i)=>document.getElementById("expImg"+(i+1)).src=img);
+  document.getElementById("experienceModal").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+
+function closeExperience(){
+  document.getElementById("experienceModal").classList.remove("show");
+  document.body.style.overflow="";
+}
+
+document.getElementById("experienceModal").addEventListener("click",e=>{
+  if(e.target.id==="experienceModal")closeExperience();
+});
+
+const projectData={
+  project1:{
+    category:"METOCEAN",title:"Metocean Project",intro:"Metocean analysis and modelling project.",
+    imgs:["project-image.jpg","project-image.jpg","project-image.jpg","project-image.jpg"]
+  },
+  project2:{
+    category:"HYDRODYNAMIC",title:"Hydrodynamic Project",intro:"Hydrodynamic modelling and analysis project.",
+    imgs:["project-image.jpg","project-image.jpg","project-image.jpg","project-image.jpg"]
+  },
+  project3:{
+    category:"METOCEAN",title:"Wave Modelling Project",intro:"Wave modelling and marine analysis project.",
+    imgs:["project-image.jpg","project-image.jpg","project-image.jpg","project-image.jpg"]
+  }
+};
+
+function openProject(id){
+  const d=projectData[id];
+  document.getElementById("detailCategory").textContent=d.category;
+  document.getElementById("detailTitle").textContent=d.title;
+  document.getElementById("detailIntro").textContent=d.intro;
+  d.imgs.forEach((img,i)=>document.getElementById("img"+(i+1)).src=img);
+  document.getElementById("projectModal").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+
+function closeProject(){
+  document.getElementById("projectModal").classList.remove("show");
+  document.body.style.overflow="";
+}
+
+document.getElementById("projectModal").addEventListener("click",e=>{
+  if(e.target.id==="projectModal")closeProject();
+});
+</script>
+
+</body>
+</html>
