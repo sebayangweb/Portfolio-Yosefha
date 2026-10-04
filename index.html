@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Yosefha Br Sebayang | Portfolio</title>
+<link rel="stylesheet" href="style.css">
+<!-- Tambahan Library Ikon FontAwesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* COVER / HERO - Overlay Text */
+.hero{position:relative;overflow:hidden;background:#061923;color:#fff;line-height:0}
+.hero-banner{display:block;width:100%;height:auto;filter:brightness(0.65);} 
+
+.hero-overlay {position:absolute; top:58%; left:50%; transform:translate(-50%, -50%); text-align:center; width:90%; z-index:10; line-height:1.5;}
+.hero-small-text {font-size:22px; font-weight:700; letter-spacing:6px; text-transform:uppercase; border-bottom:1px solid rgba(255,255,255,0.4); padding-bottom:10px; display:inline-block; margin-bottom:18px; color:#00ffff;}
+.hero-main-text {font-size:clamp(28px, 6vw, 65px); font-weight:900; line-height:1.1; margin-bottom:15px; text-transform:uppercase; text-shadow:0 4px 15px rgba(0,0,0,0.6); color:#fff !important;}
+.hero-sub-text {font-size:clamp(18px, 2.5vw, 28px); font-weight:400; max-width:800px; margin:0 auto; text-shadow:0 2px 8px rgba(0,0,0,0.6); color:#e0eef2;}
+
+/* STYLING UNTUK BARIS IKON SKILL DI HERO */
+.hero-skills-bar {display:flex; align-items:center; justify-content:center; gap:35px; margin-top:45px;}
+.skill-item {display:flex; flex-direction:column; align-items:center; gap:12px; color:#fff;}
+.skill-item i {font-size:32px; color:#fff; text-shadow:0 2px 5px rgba(0,0,0,0.5);}
+.skill-item span {font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase; text-align:center; line-height:1.4; color:rgba(255,255,255,0.9); text-shadow:0 2px 5px rgba(0,0,0,0.5);}
+.skill-divider {width:1px; height:45px; background:rgba(255,255,255,0.3);}
+
+/* SCROLL DOWN INDICATOR */
+.scroll-indicator {position:absolute; bottom:40px; left:50%; transform:translateX(-50%); color:rgba(255,255,255,0.7); font-size:28px; z-index:10; animation:bounce 2s infinite; transition:0.3s;}
+.scroll-indicator:hover {color:#00ffff;}
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {transform: translateY(0) translateX(-50%);}
+  40% {transform: translateY(-15px) translateX(-50%);}
+  60% {transform: translateY(-7px) translateX(-50%);}
+}
+
+/* OVERRIDE PADDING SECTION ABOUT AGAR FULL LAYAR */
+.section { padding: 60px 2% !important; overflow: hidden; }
+
+/* OVERRIDE BORDER RADIUS UNTUK SEMUA TEMPLATE AGAR PETAK (SQUARE) */
+.project-card, 
+.experience-card, 
+.simple-card, 
+.modal-box, 
+.experience-modal-box {
+    border-radius: 0 !important;
+}
+
+/* Hilangkan lengkungan pada gambar di dalam card/modal */
+.project-image, 
+.experience-image img, 
+.detail-image img {
+    border-radius: 0 !important;
+}
+
+/* Trik Placeholder: Jika gambar rusak/kosong, muncul kotak elegan otomatis */
+.detail-image img { position: relative; background: #E3FAFF; min-height: 330px; }
+.detail-image img::after {
+    content: "\f03e   Visual Graphic"; 
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    background: #F0F8FB; color: #8BA5B5; font-size: 18px; letter-spacing: 1px;
+}
+
+/* Hilangkan lengkungan pada tombol dan tag */
+.filter-btn, 
+.experience-filter, 
+.project-category, 
+.experience-category, 
+.project-tags span, 
+.experience-tags span, 
+.connect-btn, 
+.primary-btn, 
+.secondary-btn {
+    border-radius: 0 !important;
+}
+
+/* NEW COMPREHENSIVE ABOUT SECTION (3 COLUMNS) */
+.about-master-card { 
+    display: grid; 
+    grid-template-columns: 1.25fr 0.9fr 1.35fr; 
+    gap: 30px; 
+    background: #fff; 
+    padding: 50px; 
+    border-radius: 0; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06); 
+    max-width: 100%; 
+    margin: 0 auto; 
+    align-items: stretch;
+}
+
+.col-journey { display: flex; flex-direction: column; gap: 35px; }
+.col-journey img { width: 100%; border-radius: 0; border: 1px solid #E1E8ED; display: block;} 
+
+.edu-timeline-list { position: relative; margin: 15px 0 0 15px; padding: 15px 0 15px 30px; border-left: 2px solid #009DFF; list-style: none; }
+.edu-timeline-list li { position: relative; margin-bottom: 35px; min-height: 40px; }
+.edu-timeline-list li:last-child { margin-bottom: 0; }
+.edu-timeline-list li::before { 
+    content: ""; 
+    position: absolute; 
+    left: -51px; 
+    top: -10px; 
+    width: 40px; 
+    height: 40px; 
+    background-color: #fff; 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid #009DFF; 
+    border-radius: 50%; 
+    box-sizing: border-box;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.edu-sd::before { background-image: url('Logo_SD.jpg'); }
+.edu-smp::before { background-image: url('Logo_SMP.jpg'); }
+.edu-sma::before { background-image: url('Logo_SMA.jpg'); }
+.edu-itb::before { background-image: url('Logo_ITB.jpg'); }
+
+.timeline-title { font-size: 14.5px; font-weight: 700; color: #162130; line-height: 1.2; padding-top: 2px;}
+.timeline-subtitle { font-size: 13px; color: #536274; margin-top: 5px; font-weight: 500;}
+
+.col-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 0; min-height: 450px; display: block; box-shadow: 0 4px 15px rgba(0,0,0,0.1);} 
+
+.col-text { display: flex; flex-direction: column; justify-content: center; }
+.col-text h3 { font-size: 25px; margin-bottom: 8px; color: var(--text); text-transform: uppercase; font-weight: 900; letter-spacing: 0.5px; white-space: nowrap;}
+.col-text .contact-info { font-size: 14.5px; color: var(--muted); display: block; margin-bottom: 25px; line-height: 1.6; padding-bottom: 20px; border-bottom: 1px solid #E1E8ED; }
+.col-text p { font-size: 15.5px; line-height: 1.8; color: var(--muted); text-align: justify; }
+
+.project-grid, .experience-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+.section-title { text-align: center; margin-bottom: 40px; }
+.project-filters { justify-content: center; }
+
+/* SCROLL REVEAL ANIMATION */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* =========================================
+   PROJECT MODAL ENHANCEMENTS 
+   ========================================= */
+.quick-facts { display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap;}
+.quick-facts span { background: #E3FAFF; color: #008AD8; padding: 6px 14px; font-size: 13px; font-weight: 700; border-radius: 0; display: flex; align-items: center; gap: 6px;}
+
+.callout-box { background: linear-gradient(135deg, #009DFF, #00FFFF); padding: 2px; margin-top: 25px; border-radius: 0;}
+.callout-inner { background: #fff; padding: 20px; text-align: center; border-radius: 0;}
+.callout-inner h4 { font-size: 38px; color: #162130; margin-bottom: 5px; font-weight: 900;}
+.callout-inner p { font-size: 14px !important; color: #536274 !important; margin: 0 !important; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;}
+
+.modal-action-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #009DFF; color: #fff; padding: 14px 28px; text-decoration: none; font-weight: 700; margin: 40px auto 0; font-size: 15px; transition: .2s; border: none; cursor: pointer; border-radius:0;}
+.modal-action-btn:hover { background: #0077c8; color:#fff;}
+.modal-footer { text-align: center; width: 100%; border-top: 1px solid #E1E8ED; padding-top: 30px; margin-top: 20px;}
+
+/* Dark Mode Overrides */
+body.dark .about-master-card { background: #12303C; border: 1px solid #28505E; box-shadow: none; }
+body.dark .col-journey img { border-color: #28505E; }
+body.dark .col-photo img { box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+body.dark .col-text h3, body.dark .timeline-title { color: #F2FAFF; }
+body.dark .col-text .contact-info, body.dark .col-text p, body.dark .timeline-subtitle { color: #B8CBD3; }
+body.dark .col-text .contact-info { border-color: #28505E; }
+
+/* Dark Mode for Modal Enhancements */
+body.dark .quick-facts span { background: #0C3B4B; color: #00FFFF; }
+body.dark .callout-inner { background: #12303C; }
+body.dark .callout-inner h4 { color: #00FFFF; }
+body.dark .callout-inner p { color: #B8CBD3 !important; }
+body.dark .modal-footer { border-color: #28505E; }
+body.dark .detail-image img::after { background: #0C3B4B; color: #536274; }
+
+@media(max-width:1200px){
+  .section { padding: 50px 4% !important; }
+}
+@media(max-width:1050px){
+  .about-master-card { grid-template-columns: 1fr 1fr; }
+  .col-photo { order: -1; grid-column: span 2; }
+  .col-photo img { max-height: 500px; }
+  .col-text h3 { white-space: normal; } 
+}
+@media(max-width:900px){
+  .hero-skills-bar {flex-wrap:wrap; gap:15px; margin-top:30px;}
+  .skill-divider {display:none;}
+  .skill-item {width:40%; margin-bottom:10px;}
+  .skill-item i {font-size:26px;}
+  .skill-item span {font-size:10px;}
+  .scroll-indicator {bottom: 20px; font-size:22px;}
+  .hero-small-text {font-size:15px; letter-spacing:3px;}
+  .hero-overlay {width: 95%;}
+  .about-master-card { grid-template-columns: 1fr; padding: 25px; gap: 30px; }
+  .col-photo { grid-column: span 1; }
+  .col-photo img { min-height: 350px; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+<div class="logo">YS</div>
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#work">Work & Projects</a>
+<a href="#research">Research</a>
+<a href="#organization">Organization</a>
+<a href="#skills">Skills</a>
+</div>
+<div class="nav-right">
+<button id="themeBtn" class="theme-btn">☀️</button>
+<a href="#contact" class="connect-btn">Let's Connect</a>
+</div>
+</nav>
+
+<!-- HERO / COVER -->
+<section class="hero" id="home">
+<img src="CoverBackGround.png" class="hero-banner" alt="Ocean Insights cover">
+<div class="hero-overlay">
+  <span class="hero-small-text">PORTFOLIO</span>
+  <h1 class="hero-main-text">GUIDED BY THE OCEAN</h1>
+  <p class="hero-sub-text">Navigating the ship of my career</p>
+  
+  <div class="hero-skills-bar">
+    <div class="skill-item">
+      <i class="fa-solid fa-water"></i>
+      <span>HYDRO-<br>OCEANOGRAPHY</span>
+    </div>
+    <div class="skill-divider"></div>
+    <div class="skill-item">
+      <i class="fa-solid fa-wind"></i>
+      <span>METOCEAN</span>
+    </div>
+    <div class="skill-divider"></div>
+    <div class="skill-item">
+      <i class="fa-solid fa-cubes"></i>
+      <span>NUMERICAL<br>MODELLING</span>
+    </div>
+    <div class="skill-divider"></div>
+    <div class="skill-item">
+      <i class="fa-solid fa-bolt"></i>
+      <span>RENEWABLE<br>ENERGY</span>
+    </div>
+    <div class="skill-divider"></div>
+    <div class="skill-item">
+      <i class="fa-solid fa-chart-line"></i>
+      <span>DATA<br>ANALYSIS</span>
+    </div>
+  </div>
+</div>
+
+<a href="#about" class="scroll-indicator"><i class="fa-solid fa-angles-down"></i></a>
+</section>
+
+<!-- 01 ABOUT ME -->
+<section class="section" id="about">
+<div class="section-title reveal"><span>01</span><h2>ABOUT ME</h2></div>
+
+<div class="about-master-card reveal">
+  <div class="col-journey">
+    <img src="Education_1.png" alt="Journey from Medan to Bandung">
+    <ul class="edu-timeline-list">
+      <li class="edu-sd"><div class="timeline-title">SD 040545 Durin Rugun</div></li>
+      <li class="edu-smp"><div class="timeline-title">SMP Negeri 1 Lau Baleng</div></li>
+      <li class="edu-sma"><div class="timeline-title">SMA Negeri 1 Plus Raya</div></li>
+      <li class="edu-itb">
+        <div class="timeline-title">Institut Teknologi Bandung</div>
+        <div class="timeline-subtitle">Bachelor of Oceanography</div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="col-photo">
+    <img src="Education_Picture.png" alt="Yosefha Br Sebayang">
+  </div>
+
+  <div class="col-text">
+    <h3>YOSEFHA BR SEBAYANG</h3>
+    <span class="contact-info">West Java, Indonesia | +6285831004203 | yosefhasebayang@gmail.com | linkedin.com/in/yosefha-br-sebayang</span>
+    <p>Fresh graduate in Oceanography from Bandung Institute of Technology (ITB) with hands-on experience in metocean analysis, hydrodynamic and wave numerical modelling, and marine data processing. Experienced in developing, calibrating, and validating hydrodynamic and wave models using MIKE21 HD/SW, SWAN, and ADCIRC, with experience working with wave, current, tidal, atmospheric, and bathymetric datasets. Skilled in scientific data processing and quantitative analysis using Python and MATLAB, as well as geospatial and bathymetric data processing using QGIS and ArcGIS. Experienced in model validation using observational and reanalysis data, with a strong interest in metocean forecasting, ocean current and wave analysis, and data-driven solutions for offshore and marine operations.</p>
+  </div>
+</div>
+</section>
+
+<!-- 02 WORK & PROJECT EXPERIENCE -->
+<section class="section" id="work">
+<div class="section-title reveal"><span>02</span><h2>WORK & PROJECT EXPERIENCE</h2></div>
+
+<div class="project-grid">
+<div class="project-card reveal" data-category="metocean">
+<img src="project-image.jpg" class="project-image" alt="Metocean Project" onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='">
+<div class="project-content"><span class="project-category">Metocean</span><h3>Studi Potensi Energi Gelombang Laut di Perairan Tulungagung</h3><p>Processing and analyzing bivariate sea state data, wind, and wave reanalysis datasets using advanced statistical methods.</p><div class="partner-logos"><span class="partner-label">In Collaboration With</span><img src="Logo PT LAPI ITB.png" alt="PT LAPI ITB"><img src="Logo_PLN.png" alt="PLN"></div><div class="project-tags"><span>Python</span><span>MATLAB</span><span>Data</span></div><button class="project-link" onclick="openProject('work1')">View Project →</button></div>
+</div>
+
+<div class="project-card reveal" data-category="Metocean">
+<img src="project-image.jpg" class="project-image" alt="Metocean Project" onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='">
+<div class="project-content"><span class="project-category">Metocean</span><h3>Studi Potensi Energi Gelombang di Nusa Penida</h3><p>Developing unstructured meshes (OceanMesh2D) and calibrating hydrodynamic models, ensuring accurate negative bias corrections.</p><div class="partner-logos"><span class="partner-label">In Collaboration With</span><img src="Logo Synkrona.png" alt="Synkrona"></div><div class="project-tags"><span>ADCIRC</span><span>MIKE Zero</span></div><button class="project-link" onclick="openProject('work2')">View Project →</button></div>
+</div>
+
+<div class="project-card reveal" data-category="Hydrodynamic">
+<img src="project-image.jpg" class="project-image" alt="Hydrodynamic Project" onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='">
+<div class="project-content"><span class="project-category">Hydrodynamic</span><h3>The North Java Coast Aquaculture Pond Revitalization Project in Subang</h3><p>Spatial mapping and bathymetric data processing starting from precise longitudes (111.8333) for regional coastal models.</p><div class="partner-logos"><span class="partner-label">In Collaboration With</span><img src="Logo_KKP.jpg" alt="Kementerian Kelautan dan Perikanan"></div><div class="project-tags"><span>QGIS</span><span>ArcGIS</span></div><button class="project-link" onclick="openProject('work3')">View Project →</button></div>
+</div>
+</div>
+</section>
+
+<!-- 03 RESEARCH EXPERIENCE -->
+<section class="section" id="research">
+<div class="section-title reveal"><span>03</span><h2>RESEARCH EXPERIENCE</h2></div>
+
+<div class="experience-grid">
+<div class="experience-card reveal" data-category="research">
+<div class="experience-icon">🔬</div><div class="experience-content">
+<span class="experience-category">Undergraduate Thesis</span><h3>Wave Energy Potential</h3>
+<p>Studi Potensi Energi Gelombang Laut dan Kelayakan Ekonomi Pemasangan Wave Energy Converter (WEC) di Perairan Tulungagung.</p>
+<div class="experience-tags"><span>SWAN</span><span>LCOE</span><span>WEC</span></div>
+<button class="experience-link" onclick="openExperience('res1')">View Details →</button>
+</div></div>
+
+<div class="experience-card reveal" data-category="research">
+<div class="experience-icon">📊</div><div class="experience-content">
+<span class="experience-category">Academic Colloquium</span><h3>Research Colloquium</h3>
+<p>Presented research methodology and theoretical background on Wave Energy Converters (WaveRoller & Wave Dragon).</p>
+<div class="experience-tags"><span>Presentation</span><span>Analysis</span></div>
+<button class="experience-link" onclick="openExperience('res2')">View Details →</button>
+</div></div>
+
+<div class="experience-card reveal" data-category="research">
+<div class="experience-icon">🌊</div><div class="experience-content">
+<span class="experience-category">Equity Program</span><h3>Nusa Penida Wave Energy</h3>
+<p>Prepared academic research poster highlighting metocean aspects of wave energy potential in Nusa Penida.</p>
+<div class="experience-tags"><span>Research</span><span>Poster</span></div>
+<button class="experience-link" onclick="openExperience('res3')">View Details →</button>
+</div></div>
+</div>
+</section>
+
+<!-- 04 ORGANIZATION & LEADERSHIP -->
+<section class="section" id="organization">
+<div class="section-title reveal"><span>04</span><h2>ORGANIZATION & LEADERSHIP</h2></div>
+
+<div class="experience-grid">
+<div class="experience-card reveal" data-category="org">
+<div class="experience-icon">🤝</div><div class="experience-content">
+<span class="experience-category">Leadership</span><h3>Head of Sponsorship</h3>
+<p>Led sponsorship divisions, managing stakeholder relationships and funding strategies for major university events.</p>
+<div class="experience-tags"><span>Leadership</span><span>Negotiation</span></div>
+<button class="experience-link" onclick="openExperience('org1')">View Details →</button>
+</div></div>
+
+<div class="experience-card reveal" data-category="org">
+<div class="experience-icon">📋</div><div class="experience-content">
+<span class="experience-category">Community</span><h3>Project Coordinator</h3>
+<p>Coordinated organizational projects, ensuring team alignment and successful execution of community programs.</p>
+<div class="experience-tags"><span>Coordination</span><span>Event</span></div>
+<button class="experience-link" onclick="openExperience('org2')">View Details →</button>
+</div></div>
+</div>
+</section>
+
+<!-- 05 SKILLS -->
+<section class="section" id="skills">
+<div class="section-title reveal"><span>05</span><h2>SKILLS</h2></div>
+<div class="skills reveal" style="justify-content: center; max-width: 1000px; margin: 0 auto;">
+<span>Ocean Modelling</span><span>MIKE Zero</span><span>SWAN</span><span>ADCIRC</span><span>OceanMesh2D</span><span>Spectral Analysis</span><span>Python (xarray, matplotlib)</span><span>MATLAB</span><span>QGIS</span><span>ArcGIS</span><span>Geospatial Analysis</span><span>Project Coordination</span>
+</div>
+</section>
+
+<!-- 06 CONTACT -->
+<section class="section contact-section" id="contact">
+<div class="section-title reveal"><span>06</span><h2>LET'S CONNECT</h2></div>
+<div class="simple-card reveal" style="margin: 0 auto;"><p style="text-align: center;">I am open to opportunities in oceanography, marine industries, geohydromatics, metocean analysis, and related fields.</p></div>
+</section>
+
+<footer><p>© 2026 Yosefha Br Sebayang</p></footer>
+
+
+<!-- MODALS -->
+
+<!-- EXPERIENCE MODAL (Biarkan default 1 row untuk organisasi/riset) -->
+<div class="experience-modal" id="experienceModal">
+<div class="experience-modal-box">
+<button class="close-experience" onclick="closeExperience()">×</button>
+<div class="experience-header">
+<span id="experienceCategory">CATEGORY</span><h2 id="experienceTitle">Title</h2><p id="experienceIntro">Intro.</p>
+</div>
+<div class="experience-detail">
+<div class="experience-row"><div class="experience-image"><img id="expImg1" src="" alt="Experience" onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='"></div><div class="experience-text"><span>01</span><h3>Overview</h3><p id="expDesc1">Description.</p></div></div>
+</div>
+</div>
+</div>
+
+
+<!-- PROJECT MODAL (DIUBAH TOTAL SESUAI PERMINTAAN: 4 TAHAP, ZIG-ZAG, QUICK FACTS, CALLOUT, CTA) -->
+<div class="project-modal" id="projectModal">
+<div class="modal-box">
+<button class="close-modal" onclick="closeProject()">×</button>
+
+<div class="modal-header">
+  <span id="detailCategory">CATEGORY</span>
+  <h2 id="detailTitle">Title</h2>
+  <p id="detailIntro">Intro.</p>
+  <!-- QUICK FACTS BAR -->
+  <div class="quick-facts" id="detailTags">
+      <!-- Diisi otomatis via JavaScript -->
+  </div>
+</div>
+
+<div class="detail-content">
+  
+  <!-- Tahap 1: Project Overview (Teks di Kanan) -->
+  <div class="detail-row">
+    <!-- Gambar akan otomatis jadi placeholder abu-abu halus jika file gambar aslinya tidak ada -->
+    <div class="detail-image"><img id="pImg1" src="" alt="Overview" onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='"></div>
+    <div class="detail-text">
+      <span>01</span>
+      <h3>Project Overview</h3>
+      <p id="pDesc1">Description.</p>
+    </div>
+  </div>
+
+  <!-- Tahap 2: Methodology (Teks di Kiri - REVERSE) -->
+  <div class="detail-row reverse">
+    <div class="detail-image"><img id="pImg2" src="" alt="Methodology" onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='"></div>
+    <div class="detail-text">
+      <span>02</span>
+      <h3>Methodology</h3>
+      <p id="pDesc2">Description.</p>
+    </div>
+  </div>
+
+  <!-- Tahap 3: My Contribution (Teks di Kanan) -->
+  <div class="detail-row">
+    <div class="detail-image"><img id="pImg3" src="" alt="Contribution" onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='"></div>
+    <div class="detail-text">
+      <span>03</span>
+      <h3>My Contribution</h3>
+      <p id="pDesc3">Description.</p>
+    </div>
+  </div>
+
+  <!-- Tahap 4: Result & Outcome (Teks di Kiri - REVERSE) -->
+  <div class="detail-row reverse">
+    <div class="detail-image"><img id="pImg4" src="" alt="Result" onerror="this.onerror=null; this.src='data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs='"></div>
+    <div class="detail-text">
+      <span>04</span>
+      <h3>Result & Outcome</h3>
+      <p id="pDesc4">Description.</p>
+      
+      <!-- HIGHLIGHT CALLOUT BOX (Angka Hasil Mencolok) -->
+      <div class="callout-box" id="calloutBox">
+          <div class="callout-inner">
+              <h4 id="calloutValue">0</h4>
+              <p id="calloutLabel">Metric</p>
+          </div>
+      </div>
+      
+    </div>
+  </div>
+
+</div> <!-- End Detail Content -->
+
+<!-- ACTION BUTTON BAWAH (View Full Report / GitHub) -->
+<div class="modal-footer">
+    <a href="#" id="detailActionBtn" class="modal-action-btn" target="_blank"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span>View Full Report</span></a>
+</div>
+
+</div>
+</div>
+
+<script>
+const navbar=document.querySelector(".navbar");
+window.addEventListener("scroll",()=>{
+if(window.scrollY>140){navbar.classList.add("visible");}
+else{navbar.classList.remove("visible");}
+});
+
+const btn=document.getElementById("themeBtn");
+if(localStorage.getItem("theme")==="dark"){document.body.classList.add("dark");btn.textContent="🌙";}
+btn.addEventListener("click",()=>{document.body.classList.toggle("dark");const dark=document.body.classList.contains("dark");btn.textContent=dark?"🌙":"☀️";localStorage.setItem("theme",dark?"dark":"light");});
+
+document.querySelectorAll(".filter-btn").forEach(btn=>{btn.addEventListener("click",()=>{document.querySelectorAll(".filter-btn").forEach(b=>b.classList.remove("active"));btn.classList.add("active");const f=btn.dataset.filter;document.querySelectorAll(".project-card").forEach(p=>p.classList.toggle("hidden",f!=="all"&&p.dataset.category!==f));});});
+
+// SCROLL REVEAL ANIMATION SCRIPT
+document.addEventListener("DOMContentLoaded", () => {
+  const revealElements = document.querySelectorAll('.reveal');
+  const revealOptions = {
+    threshold: 0.15,
+    rootMargin: "0px 0px -50px 0px"
+  };
+
+  const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, revealOptions);
+
+  revealElements.forEach(el => {
+    revealOnScroll.observe(el);
+  });
+});
+
+
+// DATA UNTUK EXPERIENCE MODAL
+const expData={
+  res1: {category:"RESEARCH", title:"Thesis: Wave Energy Potential", intro:"Studi Potensi Energi Gelombang Laut di Tulungagung.", imgs:["experience-image.jpg"]},
+  res2: {category:"RESEARCH", title:"Academic Colloquium", intro:"Presenting wave energy research methodology.", imgs:["experience-image.jpg"]},
+  res3: {category:"RESEARCH", title:"Equity Program", intro:"Nusa Penida wave energy poster presentation.", imgs:["experience-image.jpg"]},
+  org1: {category:"ORGANIZATION", title:"Head of Sponsorship", intro:"Managing sponsorships and partnerships.", imgs:["experience-image.jpg"]},
+  org2: {category:"ORGANIZATION", title:"Project Coordinator", intro:"Coordinating team events.", imgs:["experience-image.jpg"]}
+};
+
+function openExperience(id){
+  const d=expData[id];
+  document.getElementById("experienceCategory").textContent=d.category;
+  document.getElementById("experienceTitle").textContent=d.title;
+  document.getElementById("experienceIntro").textContent=d.intro;
+  document.getElementById("experienceModal").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+function closeExperience(){
+  document.getElementById("experienceModal").classList.remove("show");
+  document.body.style.overflow="";
+}
+document.getElementById("experienceModal").addEventListener("click",e=>{if(e.target.id==="experienceModal")closeExperience();});
+
+
+// ==========================================
+// DATA UNTUK PROJECT MODAL (4 TAHAP CERITA)
+// ==========================================
+const projectData={
+  work1: {
+    category:"METOCEAN", 
+    title:"Metocean Data Analysis", 
+    intro:"Advanced processing of wind and wave reanalysis datasets for offshore viability.", 
+    
+    // Quick Facts Bar
+    tags: ['<i class="fa-regular fa-calendar"></i> 2024', '<i class="fa-brands fa-python"></i> Python', '<i class="fa-solid fa-chart-line"></i> MATLAB'],
+    
+    // Tahap 1: Overview
+    img1:"project-image-1a.jpg", 
+    desc1:"Proyek ini bertujuan untuk mengekstrak dan menganalisis data historis metocean berupa bivariate sea state serta data kecepatan angin. Pemahaman karakteristik cuaca laut lokal sangat krusial dalam mendukung perencanaan infrastruktur.",
+    
+    // Tahap 2: Methodology
+    img2:"project-image-1b.jpg",
+    desc2:"Memanfaatkan pustaka Python (xarray, matplotlib) untuk ekstraksi data NetCDF spasial dalam resolusi tinggi. Analisis spektral dilakukan menggunakan algoritma Welch di MATLAB untuk memecah energi gelombang berdasarkan frekuensi.",
+    
+    // Tahap 3: Contribution
+    img3:"project-image-1c.jpg",
+    desc3:"Saya membangun script otomasi pemrosesan data, melakukan quality control pada data mentah, serta mengeksekusi perhitungan zero-down crossing untuk menentukan probabilitas periode gelombang secara statistik.",
+    
+    // Tahap 4: Result
+    img4:"project-image-1d.jpg",
+    desc4:"Laporan komprehensif berupa scatter table probabilitas tinggi dan periode gelombang (Hs-Tz) serta plot wind rose telah diselesaikan. Analisis ini memberikan estimasi akurat mengenai kondisi hidrodinamika ekstrem bulanan.",
+    
+    // Highlight Box
+    calloutVal: "5.1 m",
+    calloutLab: "50-Year Return Period (Hs)",
+    
+    // CTA Button
+    btnText: "View Full Report ↗",
+    btnLink: "#" 
+  },
+
+  work2: {
+    category:"HYDRODYNAMIC", 
+    title:"Numerical Modelling", 
+    intro:"Hydrodynamic and wave model calibration using unstructured meshes.", 
+    tags: ['<i class="fa-solid fa-user"></i> Individual Project', '<i class="fa-solid fa-water"></i> ADCIRC', '<i class="fa-solid fa-cube"></i> MIKE Zero'],
+    
+    img1:"project-image-2a.jpg", 
+    desc1:"Pemodelan numerik pesisir menuntut keakuratan tinggi dalam merepresentasikan kondisi pasang surut dan arus laut. Proyek ini berfokus pada pengembangan mesh hidrodinamika yang mampu menangkap variasi garis pantai yang kompleks.",
+    
+    img2:"project-image-2b.jpg",
+    desc2:"Menggunakan algoritma generasi unstructured mesh melalui OceanMesh2D. Model dieksekusi menggunakan ADCIRC dan MIKE Zero. Kalibrasi dilakukan secara iteratif untuk memperbaiki gesekan dasar laut (bottom friction).",
+    
+    img3:"project-image-2c.jpg",
+    desc3:"Tugas utama saya adalah mengidentifikasi anomali elevasi air. Saya melakukan penyesuaian (tuning) pada parameter numerik untuk mengoreksi nilai negative bias agar hasil model selaras dengan data stasiun pasut observasi.",
+    
+    img4:"project-image-2d.jpg",
+    desc4:"Model hidrodinamika tervalidasi dengan sangat baik, menghasilkan representasi sirkulasi arus laut yang stabil. Hasil output ini siap digunakan sebagai kondisi batas (boundary condition) untuk studi lintasan pesisir.",
+    
+    calloutVal: "0.85",
+    calloutLab: "Correlation Coefficient (R²)",
+    btnText: "View Project File ↗", 
+    btnLink: "#" 
+  },
+
+  work3: {
+    category:"METOCEAN", 
+    title:"Geospatial Bathymetry", 
+    intro:"Spatial mapping and bathymetric data processing for coastal models.", 
+    tags: ['<i class="fa-solid fa-earth-americas"></i> QGIS', '<i class="fa-solid fa-map"></i> ArcGIS', '<i class="fa-solid fa-location-dot"></i> Spatial Data'],
+    
+    img1:"project-image-3a.jpg", 
+    desc1:"Model laut regional memerlukan input elevasi dasar laut yang presisi. Proyek ini memproses kumpulan data batimetri mentah menjadi peta kontur berkelanjutan yang kompatibel dengan berbagai software simulasi numerik.",
+    
+    img2:"project-image-3b.jpg",
+    desc2:"Data elevasi diimpor dan diproses menggunakan perangkat lunak GIS (QGIS & ArcGIS). Teknik interpolasi Kriging dan Inverse Distance Weighting (IDW) diterapkan secara ketat untuk mengatasi kekosongan data (data gaps).",
+    
+    img3:"project-image-3c.jpg",
+    desc3:"Saya mendigitasi garis pantai dan menetapkan titik awal koordinat referensi yang akurat. Saya juga mengonversi format raster (.tif) menjadi grid XYZ yang sesuai dengan persyaratan ketat file input ADCIRC/MIKE.",
+    
+    img4:"project-image-3d.jpg",
+    desc4:"Peta batimetri spasial resolusi tinggi berhasil diselesaikan. File dasar ini telah teruji kompatibilitasnya, mengurangi drastis potensi instabilitas saat memecahkan persamaan shallow water equation.",
+    
+    calloutVal: "10m",
+    calloutLab: "High Spatial Resolution",
+    btnText: "View Map Detail ↗", 
+    btnLink: "#" 
+  }
+};
+
+function openProject(id){
+  const d=projectData[id];
+  document.getElementById("detailCategory").textContent=d.category;
+  document.getElementById("detailTitle").textContent=d.title;
+  document.getElementById("detailIntro").textContent=d.intro;
+  
+  // Render Quick Facts Bar (Chips)
+  const tagsContainer = document.getElementById("detailTags");
+  tagsContainer.innerHTML = '';
+  if(d.tags && d.tags.length > 0) {
+      d.tags.forEach(tag => {
+          const span = document.createElement("span");
+          span.innerHTML = tag;
+          tagsContainer.appendChild(span);
+      });
+  }
+  
+  // Set Gambar dan Teks untuk 4 Baris Cerita (Zig-Zag)
+  document.getElementById("pImg1").src=d.img1;
+  document.getElementById("pDesc1").textContent=d.desc1;
+  document.getElementById("pImg2").src=d.img2;
+  document.getElementById("pDesc2").textContent=d.desc2;
+  document.getElementById("pImg3").src=d.img3;
+  document.getElementById("pDesc3").textContent=d.desc3;
+  document.getElementById("pImg4").src=d.img4;
+  document.getElementById("pDesc4").textContent=d.desc4;
+  
+  // Render Highlight Callout Box
+  const calloutBox = document.getElementById("calloutBox");
+  if(d.calloutVal && d.calloutLab) {
+      calloutBox.style.display = "block";
+      document.getElementById("calloutValue").textContent = d.calloutVal;
+      document.getElementById("calloutLabel").textContent = d.calloutLab;
+  } else {
+      calloutBox.style.display = "none";
+  }
+
+  // Render Action Button (Link Github / Repositori)
+  const actionBtn = document.getElementById("detailActionBtn");
+  if(d.btnText && d.btnLink) {
+      actionBtn.style.display = "inline-flex";
+      actionBtn.querySelector('span').textContent = d.btnText.replace(" ↗", ""); // set teks asli, ikon panah dari css/font
+      actionBtn.href = d.btnLink;
+  } else {
+      actionBtn.style.display = "none";
+  }
+
+  document.getElementById("projectModal").classList.add("show");
+  document.body.style.overflow="hidden";
+}
+
+function closeProject(){
+  document.getElementById("projectModal").classList.remove("show");
+  document.body.style.overflow="";
+}
+document.getElementById("projectModal").addEventListener("click",e=>{if(e.target.id==="projectModal")closeProject();});
+</script>
+</body>
+</html>
